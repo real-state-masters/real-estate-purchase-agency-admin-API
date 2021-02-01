@@ -39,14 +39,23 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UpdateProperty $request)
+    public function store(StoreProperty $request)
     {
         //
         
         Property::insert([
             [
-                'name'=>$request->name,
-                'lastname'=>$request->lastname,
+                'location'=> $request->location,
+                'type'=>$request->type,
+                'area'=>$request->area,
+                'price'=>$request->price,
+                'description'=>$request->description,
+                'contact_id'=>$request->contact,
+                'title'=>$request->title,
+                'bathrooms' =>$request->bathrooms ,
+                'rooms' =>$request->rooms,
+                'pets' =>$request->pets,
+                'condition' =>$request->condition,
             ]
         ]);
         
@@ -72,7 +81,7 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProperty $request, $id)
     {
         //
     }

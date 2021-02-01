@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// The catch-all will match anything except the previous defined routes.
+Route::any('{catchall}', function(){
+    return 'catched';
+})->where('catchall', '.*');
 Route::resource('/properties',PropertyController::class);
 Route::resource('/users',UserController::class);
 Route::post('/test',[PropertyController::class,'store']);
