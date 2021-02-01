@@ -37,9 +37,9 @@ class MongoModel
         return self::getInstance()->insertMany($data);
     }
 
-    public static function update($data)
+    public static function update($filter, $data)
     {
-        return self::getInstance()->updateMany($data);
+        return self::getInstance()->updateMany($filter, $data);
     }
 
     public static function delete($filter)

@@ -39,28 +39,35 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProperty $request)
+    public function store(Request $request)
     {
         //
-        
+
         Property::insert([
             [
                 'location'=> $request->location,
                 'type'=>$request->type,
-                'area'=>$request->area,
+                'area'=>$request->area, //m2
+                'status' => $request->status, // sold
+                'sold_at' => $request->sold_at,
+                'bought_by' => $request->bought_by,
+                'created_at' => $request->created_at,
+                'updated_at' => $request->updated_at,
                 'price'=>$request->price,
+                'images' => $request->images,
                 'description'=>$request->description,
-                'contact_id'=>$request->contact,
-                'title'=>$request->title,
-                'bathrooms' =>$request->bathrooms ,
-                'rooms' =>$request->rooms,
+                'num_bathrooms' =>$request->num_bathrooms,
+                'num_rooms' => $request->num_rooms,
                 'pets' =>$request->pets,
+                'fully_fitted_kitchen' => $request->fully_fitted_kitchen,
+                'furnished' => $request->furnished,
                 'condition' =>$request->condition,
+                'contact'=>$request->contact, //id of the user in charge of the property
+                'title'=>$request->title,
             ]
         ]);
-        
 
-        return parent::sendResponse('hessssllo');
+        return parent::sendResponse('stored');
     }
 
     /**
@@ -81,9 +88,32 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProperty $request, $id)
+    public function update(Request $request, $id)
     {
-        //
+        Property::update(["location" => "60182f6bba1a0000ca007419"],
+        ['$set'=>[
+                'type'=> "holaaaaaaaaaaa"
+                /*'type'=>$request->type,
+                'area'=>$request->area, //m2
+                'status' => $request->status, // sold
+                'sold_at' => $request->sold_at,
+                'bought_by' => $request->bought_by,
+                'created_at' => $request->created_at,
+                'updated_at' => $request->updated_at,
+                'price'=>$request->price,
+                'images' => $request->images,
+                'description'=>$request->description,
+                'num_bathrooms' =>$request->num_bathrooms,
+                'num_rooms' => $request->num_rooms,
+                'pets' =>$request->pets,
+                'fully_fitted_kitchen' => $request->fully_fitted_kitchen,
+                'furnished' => $request->furnished,
+                'condition' =>$request->condition,
+                'contact'=>$request->contact, //id of the user in charge of the property
+                'title'=>$request->title,*/
+            ]
+        ]);
+        return parent::sendResponse('updated');
     }
 
     /**
