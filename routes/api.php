@@ -19,11 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // The catch-all will match anything except the previous defined routes.
-
 Route::resource('/properties',PropertyController::class);
 Route::resource('/users',UserController::class);
-Route::post('/test',[PropertyController::class,'store']);
-Route::get('/mongo', [PropertyController::class, 'mongoConnect']);
+//Route::post('/test',[PropertyController::class,'store']);
+//Route::get('/mongo', [PropertyController::class, 'mongoConnect']);
 
 Route::fallback(function () {
     return 'RESOURcE DOES NOT EXIST';
@@ -35,5 +34,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::any('{catchall}', function(){
-    return 'catched';
+    return 'No encuentra la ruta';
 })->where('catchall', '.*');

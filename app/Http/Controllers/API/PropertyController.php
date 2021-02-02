@@ -15,7 +15,7 @@ class PropertyController extends Controller
 {
     public function __construct()
     {
-       //$this->properties = Property::getCollection();
+        //$this->properties = Property::getCollection();
     }
     /**
      * Display a listing of the resource.
@@ -30,7 +30,6 @@ class PropertyController extends Controller
         //return $conn->find()->toArray();
         //return $this->properties->find()->toArray();
         return Property::find()->toArray();
-
     }
 
     /**
@@ -42,25 +41,32 @@ class PropertyController extends Controller
     public function store(StoreProperty $request)
     {
         //
-        
-        Property::insert([
-            [
-                'location'=> $request->location,
-                'type'=>$request->type,
-                'area'=>$request->area,
-                'price'=>$request->price,
-                'description'=>$request->description,
-                'contact_id'=>$request->contact,
-                'title'=>$request->title,
-                'bathrooms' =>$request->bathrooms ,
-                'rooms' =>$request->rooms,
-                'pets' =>$request->pets,
-                'condition' =>$request->condition,
-            ]
-        ]);
-        
 
-        return parent::sendResponse('hessssllo');
+        Property::insertOne(
+            [
+                'location' => $request->location,
+                'type' => $request->type,
+                'area' => $request->area, //m2
+                'status' => $request->status, // sold
+                'sold_at' => $request->sold_at,
+                'bought_by' => $request->bought_by,
+                'created_at' => $request->created_at,
+                'updated_at' => $request->updated_at,
+                'price' => $request->price,
+                'images' => $request->images,
+                'description' => $request->description,
+                'num_bathrooms' => $request->num_bathrooms,
+                'num_rooms' => $request->num_rooms,
+                'pets' => $request->pets,
+                'fully_fitted_kitchen' => $request->fully_fitted_kitchen,
+                'furnished' => $request->furnished,
+                'condition' => $request->condition,
+                'contact' => $request->contact, //id of the user in charge of the property
+                'title' => $request->title,
+            ]
+        );
+
+        return parent::sendResponse('stored');
     }
 
     /**
@@ -69,9 +75,15 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
-        //
+
+        $property = Property::findOne($id);
+        if(!$property){
+            return Controller::sendError(['_id'=>'Id not found'],'Property not found');
+        }
+        return Controller::sendResponse($property);
     }
 
     /**
@@ -83,7 +95,39 @@ class PropertyController extends Controller
      */
     public function update(UpdateProperty $request, $id)
     {
-        //
+        Property::updateOne(
+            ["_id" => $id],
+            [
+                '$set' => [
+                    'location' => [
+                        'id' => "124234fas234d",
+                        'coordinates' => [234234.23, 141234.23], //useful for map
+                        'address' => 'my street 23',
+                        'context' => ['pais' => 'españa', 'comercios' => 'tiendas'], //reference to country,region, place
+                        'property_id' => 3,
+                    ],
+                    'type' => $request->type,
+                    'area' => $request->area, //m2
+                    'status' => $request->status, // sold
+                    'sold_at' => $request->sold_at,
+                    'bought_by' => $request->bought_by,
+                    'created_at' => $request->created_at,
+                    'updated_at' => $request->updated_at,
+                    'price' => $request->price,
+                    'images' => $request->images,
+                    'description' => $request->description,
+                    'num_bathrooms' => $request->num_bathrooms,
+                    'num_rooms' => $request->num_rooms,
+                    'pets' => $request->pets,
+                    'fully_fitted_kitchen' => $request->fully_fitted_kitchen,
+                    'furnished' => $request->furnished,
+                    'condition' => $request->condition,
+                    'contact' => $request->contact, //id of the user in charge of the property
+                    'title' => $request->title,
+                ]
+            ]
+        );
+        return parent::sendResponse('updated');
     }
 
     /**
@@ -94,6 +138,11 @@ class PropertyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleted = Property::deleteOne($id);
+        var_dump($deleted);
+        if($deleted->getDeletedCount() === 0){
+            return Controller::sendError([],'Property could not be deleted');
+        }
+        return Controller::sendResponse($id,'Property deleted successfully');
     }
 }
