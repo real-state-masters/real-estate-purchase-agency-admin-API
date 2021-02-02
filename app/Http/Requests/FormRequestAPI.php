@@ -17,6 +17,7 @@ class FormRequestAPI extends FormRequest
     {
         throw new HttpResponseException(
             Controller::sendError($validator->errors(),'Validation failed')
+            //the sendErro contains return response->json();
         );
     }
     /**
