@@ -4,6 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Http\Requests\API\StoreUser;
+use App\Http\Requests\API\UpdateUser;
+//use Mongo\BJSON\ObjectId;
+use stdClass;
+
 
 class UserController extends Controller
 {
@@ -14,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return User::find()->toArray();
     }
 
     /**
@@ -23,9 +29,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        //
+        $userData = $request->validated();
+        $result = User::insert($userData);
+        if($result->getInsertedCount()===0){
+            return Controller::sendError([],'User could not be registered');
+        }
+        $userData['_id'] = $result->getInsertedId();
+        return Controller::sendResponse($userData,'User successfully created');
     }
 
     /**
@@ -37,6 +49,12 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        //$user = User::find(['_id'=>$id ]);
+        $user = User::findOne($id);
+        if(!$user){
+            return Controller::sendError(['_id'=>'Id not found'],'User not found');
+        }
+        return Controller::sendResponse($user);
     }
 
     /**
@@ -46,9 +64,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUser $request, $id)
     {
-        //
+        $userData = $request->validated();
+        if(!User::findOne($id)){
+            return Controller::sendError(['id'=>'Id not found'],'Resource could not be updated');
+        }
+        User::update(['_id'=>$id],['$set'=>$userData]);
+        $user = User::findOne($id);
+        return Controller::sendResponse($user,'User successfully updated');
     }
 
     /**
@@ -60,5 +84,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $deleted = User::deleteOne($id);
+        if($deleted->getDeletedCount()===0){
+            return Controller::sendError([],'User could not be deleted');
+        }
+        return Controller::sendResponse($id,'User deleted successfully');
     }
 }
