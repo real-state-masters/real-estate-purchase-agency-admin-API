@@ -9,6 +9,7 @@ use App\Http\Requests\API\StoreUser;
 use App\Http\Requests\API\UpdateUser;
 //use Mongo\BJSON\ObjectId;
 use stdClass;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -32,6 +33,12 @@ class UserController extends Controller
     public function store(StoreUser $request)
     {
         $userData = $request->validated();
+
+        if(User::find(['email' => $userData['email']])->toArray()){
+            return Controller::sendError([],'User exist');
+        }
+
+        $userData['password'] = Hash::make($request->password);
         $result = User::insert($userData);
         if($result->getInsertedCount()===0){
             return Controller::sendError([],'User could not be registered');
@@ -48,7 +55,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
         //$user = User::find(['_id'=>$id ]);
         $user = User::findOne($id);
         if(!$user){
@@ -85,7 +91,7 @@ class UserController extends Controller
     {
         //
         $deleted = User::deleteOne($id);
-        if($deleted->getDeletedCount()===0){
+        if($deleted->getDeletedCount() === 0){
             return Controller::sendError([],'User could not be deleted');
         }
         return Controller::sendResponse($id,'User deleted successfully');

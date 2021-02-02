@@ -27,10 +27,10 @@ class MongoModel
         }
         return static::$instance;
     }
-    public static function find()
+    public static function find($filter = [])
     {
         self::getInstance();
-        return static::$instance->find();
+        return static::$instance->find($filter);
     }
 
     /**
@@ -62,6 +62,8 @@ class MongoModel
     {
         return self::getInstance()->findOne(['_id'=>$id]);
     }
+
+
     public static function insertOne($data)
     {
         $id = uniqid(time());
@@ -71,10 +73,13 @@ class MongoModel
         return self::getInstance()->insertOne($data+['_id'=>$id]);
     }
 
+
     public static function updateOne($filter,$data)
     {
         return self::getInstance()->updateOne($filter,$data);
     }
+
+
     public static function deleteOne($id)
     {
         return self::getInstance()->deleteOne(['_id'=>$id]);

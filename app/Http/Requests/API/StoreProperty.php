@@ -15,18 +15,18 @@ class StoreProperty extends FormRequestAPI
      */
     public function rules()
     {
-        //properties 
+        //properties
         return [
             'location' => 'required',
             'type' => 'string | required',
             'area' => 'integer | required', //m2
-            'status' => 'boolean | required', // sold
+            'status' => 'string | required', // sold
             'sold_at' => 'string | required',
             'bought_by' => 'integer | required',
             'created_at' => 'string | required',
             'updated_at' => 'integer | required',
             'price' => 'numeric | required',
-            'images' => 'required',
+            'images' => 'array | required',
             'description' => 'string | required',
             'num_bathrooms' => 'integer | required',
             'num_rooms' => 'integer | required',
