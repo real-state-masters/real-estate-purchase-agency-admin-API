@@ -15,6 +15,7 @@ class StoreProperty extends FormRequestAPI
      */
     public function rules()
     {
+        //properties 
         return [
             'location'=> 'required',
             'type'=>'string | required',
