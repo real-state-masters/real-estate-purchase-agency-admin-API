@@ -1,7 +1,27 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+
+
+#  Backend admin site of the real state purchase agency
+
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://tonijorda.com/"><img src="https://avatars.githubusercontent.com/u/49041487?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antonio Jorda</b></sub></a><br /><a href="https://github.com/real-state-masters/real-estate-purchase-agency-admin-API/commits?author=Skebard" title="Code">💻</a> <a href="#infra-Skebard" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-Skebard" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/IsmaelVazquez"><img src="https://avatars.githubusercontent.com/u/66822532?v=4?s=100" width="100px;" alt=""/><br /><sub><b>IsmaelVazquez</b></sub></a><br /><a href="https://github.com/real-state-masters/real-estate-purchase-agency-admin-API/commits?author=IsmaelVazquez" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -66,20 +86,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people :yum:
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://tonijorda.com/"><img src="https://avatars.githubusercontent.com/u/49041487?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antonio Jorda</b></sub></a><br /><a href="https://github.com/real-state-masters/real-estate-purchase-agency-admin-API/commits?author=Skebard" title="Code">💻</a> <a href="#infra-Skebard" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-Skebard" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/IsmaelVazquez"><img src="https://avatars.githubusercontent.com/u/66822532?v=4?s=100" width="100px;" alt=""/><br /><sub><b>IsmaelVazquez</b></sub></a><br /><a href="https://github.com/real-state-masters/real-estate-purchase-agency-admin-API/commits?author=IsmaelVazquez" title="Code">💻</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
