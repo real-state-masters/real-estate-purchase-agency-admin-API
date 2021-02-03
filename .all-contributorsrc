@@ -15,6 +15,15 @@
         "infra",
         "ideas"
       ]
+    },
+    {
+      "login": "IsmaelVazquez",
+      "name": "IsmaelVazquez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66822532?v=4",
+      "profile": "https://github.com/IsmaelVazquez",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
