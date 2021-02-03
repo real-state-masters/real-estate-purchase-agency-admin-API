@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "IsmaelVazquez",
+      "name": "IsmaelVazquez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66822532?v=4",
+      "profile": "https://github.com/IsmaelVazquez",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "real-estate-purchase-agency-admin-API",
+  "projectOwner": "real-state-masters",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
