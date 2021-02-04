@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\MongoModel;
 
-class User extends MongoModel
+class UserMongo extends MongoModel
 {
     public static $collection = 'users';
 }

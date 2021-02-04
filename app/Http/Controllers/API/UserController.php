@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\UserMongo as User;
 use App\Http\Requests\API\StoreUser;
 use App\Http\Requests\API\UpdateUser;
 //use Mongo\BJSON\ObjectId;
