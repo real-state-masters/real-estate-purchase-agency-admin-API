@@ -1,7 +1,14 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\PropertyController;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\FirebaseUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +21,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// The catch-all will match anything except the previous defined routes.
+    Route::resource('/properties',PropertyController::class)->middleware("firebase");
+
+
+Route::resource('/users',UserController::class)->middleware("firebase");
+// Route::post('/test',[PropertyController::class,'store']);
+//Route::get('/mongo', [PropertyController::class, 'mongoConnect']);
+
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+
+Route::fallback(function () {
+    return 'RESOURcE DOES NOT EXIST';
+});
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::any('{catchall}', function(){
+    return 'not founddd';
+})->where('catchall', '.*');
