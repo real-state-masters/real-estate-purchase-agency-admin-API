@@ -22,8 +22,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // The catch-all will match anything except the previous defined routes.
-Route::resource('/properties',PropertyController::class)->middleware('auth:api');
-Route::resource('/users',UserController::class)->middleware('auth:api');
+    Route::resource('/properties',PropertyController::class)->middleware("firebase");
+
+
+Route::resource('/users',UserController::class)->middleware("firebase");
 // Route::post('/test',[PropertyController::class,'store']);
 //Route::get('/mongo', [PropertyController::class, 'mongoConnect']);
 
@@ -41,5 +43,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::any('{catchall}', function(){
-    return env('MONGODB_USERNAME');
+    return 'not founddd';
 })->where('catchall', '.*');
