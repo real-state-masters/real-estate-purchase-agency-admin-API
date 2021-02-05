@@ -40,7 +40,15 @@ class PropertyController extends Controller
      */
     public function store(StoreProperty $request)
     {
-        //
+        $propertyTypes = ['duplex','house','penthouse'];
+
+        if(!in_array($request->type,$propertyTypes)){
+            return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
+        }
+
+        $currentDateTime = date('Y-m-d H:i:s');
+
+
 
         Property::insertOne(
             [
@@ -50,7 +58,7 @@ class PropertyController extends Controller
                 'status' => $request->status, // sold
                 'sold_at' => $request->sold_at,
                 'bought_by' => $request->bought_by,
-                'created_at' => $request->created_at,
+                'created_at' => $currentDateTime,
                 'updated_at' => $request->updated_at,
                 'price' => $request->price,
                 'images' => $request->images,
@@ -87,6 +95,24 @@ class PropertyController extends Controller
     }
 
     /**
+     * Display the specified resource filtering by city name.
+     *
+     * @param  int  $location
+     * @return \Illuminate\Http\Response
+     */
+
+    public function searchLocation($location)
+    {
+
+        $property = Property::find(['location'=>$location])->toArray();
+
+        if(!$property){
+            return Controller::sendError(['location'=>'Location not found'],'Property not found');
+        }
+        return Controller::sendResponse($property);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -95,6 +121,13 @@ class PropertyController extends Controller
      */
     public function update(UpdateProperty $request, $id)
     {
+        $propertyTypes = ['duplex','house','penthouse'];
+
+        if(!in_array($request->type,$propertyTypes)){
+            return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
+        }
+        $currentDateTime = date('Y-m-d H:i:s');
+
         Property::updateOne(
             ["_id" => $id],
             [
@@ -112,7 +145,7 @@ class PropertyController extends Controller
                     'sold_at' => $request->sold_at,
                     'bought_by' => $request->bought_by,
                     'created_at' => $request->created_at,
-                    'updated_at' => $request->updated_at,
+                    'updated_at' => $currentDateTime,
                     'price' => $request->price,
                     'images' => $request->images,
                     'description' => $request->description,
@@ -128,6 +161,24 @@ class PropertyController extends Controller
             ]
         );
         return parent::sendResponse('updated');
+    }
+
+    /**
+     * Update the status of the properties.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function changeStatus($id)
+    {
+
+        $property = Property::update(['_id'=>$id],['$set'=>['status'=>false]]);
+
+        if(!$property){
+            return Controller::sendError(['Id'=>'Property id not found'],'Property not found');
+        }
+        return Controller::sendResponse($property);
     }
 
     /**

@@ -23,7 +23,7 @@ class StoreProperty extends FormRequestAPI
             'status' => 'boolean', // False = sold
             'sold_at' => 'date', //
             'bought_by' => 'integer', // user Id
-            // 'created_at' => 'date | required',
+            // 'created_at' => 'date | required', //
             // 'updated_at' => 'date',
             'price' => 'integer | required',
             'images' => 'array | required',

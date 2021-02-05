@@ -16,24 +16,23 @@ class UpdateProperty extends FormRequestAPI
     {
         return [
             'location' => 'required',
-            'type' => 'string | required',
-            'area' => 'integer | required', //m2
-            'status' => 'boolean | required', // sold
-            'sold_at' => 'string | required',
-            'bought_by' => 'integer | required',
-            'created_at' => 'string | required',
-            'updated_at' => 'integer | required',
-            'price' => 'numeric | required',
-            'images' => 'required',
-            'description' => 'string | required',
-            'num_bathrooms' => 'integer | required',
-            'num_rooms' => 'integer | required',
-            'pets' => 'boolean | required',
-            'fully_fitted_kitchen' => 'boolean | required',
-            'furnished' => 'boolean | required',
-            'condition' => 'integer | required',
-            'contact' => 'integer | required', //id of the user in charge of the property
-            'title' => 'string | required',
+            'type' => 'string',
+            'area' => 'integer', //m2
+            'status' => 'boolean', // sold
+            'sold_at' => 'date',
+            'bought_by' => 'integer',
+            // 'updated_at' => 'integer',
+            'price' => 'integer',
+            'images' => 'array',
+            'description' => 'string',
+            'num_bathrooms' => 'integer',
+            'num_rooms' => 'integer',
+            'pets' => 'boolean',
+            'fully_fitted_kitchen' => 'boolean',
+            'furnished' => 'boolean',
+            'condition' => 'integer',
+            'contact' => 'integer', //id of the user in charge of the property
+            'title' => 'string',
         ];
     }
 }

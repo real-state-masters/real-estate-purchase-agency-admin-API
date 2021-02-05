@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 // The catch-all will match anything except the previous defined routes.
 Route::resource('/properties',PropertyController::class)->middleware("firebase");
+Route::get('/properties/location/{city}',[PropertyController::class,'searchLocation'])->middleware("firebase");
+Route::post('/properties/{propertyId}/buy',[PropertyController::class,'changeStatus'])->middleware("firebase");
 
 
 Route::resource('/users',UserController::class)->middleware("firebase");
@@ -46,6 +48,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::any('{catchall}', function(){
-    return 'not founddd';
-})->where('catchall', '.*');
+// Route::any('{catchall}', function(){
+//     return 'not founddd';
+// })->where('catchall', '.*');
