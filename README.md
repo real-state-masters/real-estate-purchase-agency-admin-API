@@ -7,7 +7,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-## Contributor ✨
+## Contributors ✨
 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
