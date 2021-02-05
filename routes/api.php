@@ -22,14 +22,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 // The catch-all will match anything except the previous defined routes.
-// Route::resource('/properties',PropertyController::class)->middleware("firebase");
+Route::resource('/properties',PropertyController::class)->middleware("firebase");
 
 
-// Route::resource('/users',UserController::class)->middleware("firebase");    
-Route::resource('/properties',PropertyController::class);
+Route::resource('/users',UserController::class)->middleware("firebase");
+// Route::resource('/properties',PropertyController::class);
 
 
-Route::resource('/users',UserController::class);
+// Route::resource('/users',UserController::class);
 // Route::post('/test',[PropertyController::class,'store']);
 //Route::get('/mongo', [PropertyController::class, 'mongoConnect']);
 
