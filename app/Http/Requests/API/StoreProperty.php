@@ -18,22 +18,22 @@ class StoreProperty extends FormRequestAPI
         //properties
         return [
             'location' => 'required',
-            'type' => 'string | required',
+            'type' => 'string | required', //check array in controller
             'area' => 'integer | required', //m2
-            'status' => 'string | required', // sold
-            'sold_at' => 'string | required',
-            'bought_by' => 'integer | required',
-            'created_at' => 'string | required',
-            'updated_at' => 'integer | required',
-            'price' => 'numeric | required',
+            'status' => 'boolean', // False = sold
+            'sold_at' => 'date', //
+            'bought_by' => 'integer', // user Id
+            // 'created_at' => 'date | required',
+            // 'updated_at' => 'date',
+            'price' => 'integer | required',
             'images' => 'array | required',
-            'description' => 'string | required',
+            'description' => 'string',
             'num_bathrooms' => 'integer | required',
             'num_rooms' => 'integer | required',
-            'pets' => 'boolean | required',
-            'fully_fitted_kitchen' => 'boolean | required',
-            'furnished' => 'boolean | required',
-            'condition' => 'integer | required',
+            'pets' => 'boolean',
+            'fully_fitted_kitchen' => 'boolean',
+            'furnished' => 'boolean',
+            'condition' => 'integer', // 0 = new homes | 1 = good condition | 2 = needs renovation
             'contact' => 'integer | required', //id of the user in charge of the property
             'title' => 'string | required',
         ];
