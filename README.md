@@ -9,7 +9,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-## Contributors ✨
+## Contributor ✨
 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
