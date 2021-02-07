@@ -21,9 +21,63 @@
   </tr>
 </table>
 
+
+   
+
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+
+
+## Database
+
+ For the database, mongoDB has been used. Below we can see the collections
+ 
+ <br>
+
+  Properties collection: 
+   ```
+   {
+        "id": 2342,         
+        "location": {
+          "id": 124234234,
+          "coordinates": [
+            234234.23,
+            141234.23
+          ],
+          "address": "my street 23",
+          "context": {},
+          "property_id": 3
+        },
+        "type": "home",
+        "area": 232,
+        "status": "sold",
+        "bought_by": "3423423",
+        "created_at": "",   type : date
+        "updated_at": " , type: date
+        "price": 99999993,
+        "images": [],
+        "description": "asfasdfsfd",
+        "num_bathrooms": 2,
+        "num_rooms": 3,
+        "pets": true,
+        "equipment":0,
+        "garden": false,
+        "swimming_pool":true,
+        "lift":true,
+        "condition": 0,
+        "air_condition":false,
+        "terrace":false,
+        "contact": 32423422,
+        "title": "The best one"
+      } 
+      ```
+
+    
+
+
+
