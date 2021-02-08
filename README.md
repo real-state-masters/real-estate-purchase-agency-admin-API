@@ -40,7 +40,10 @@
  <br>
 
   Properties collection: 
-   ```
+  
+  
+  
+   ```jsonc
   
   {
 "location": { // type: object
@@ -77,7 +80,8 @@
 "title": "The best one", // type: string
 "building_use" :  // type:integer, -1-> not an office,  0-> private, 1->co_working , 2-> security_system
 }
-      ```
+    
+```
 
     
 
