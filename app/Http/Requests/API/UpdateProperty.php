@@ -20,7 +20,6 @@ class UpdateProperty extends FormRequestAPI
             'type_house' => 'integer',
             'area' => 'integer', //m2
             'status' => 'boolean', // sold
-            'sold_at' => 'date',
             'bought_by' => 'integer',
             // 'updated_at' => 'integer',
             'price' => 'integer',

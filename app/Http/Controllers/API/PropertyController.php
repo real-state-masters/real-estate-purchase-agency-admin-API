@@ -57,7 +57,6 @@ class PropertyController extends Controller
                 'type_house' => $request->type_house,
                 'area' => $request->area, //m2
                 'status' => $request->status, // sold
-                'sold_at' => $request->sold_at,
                 'bought_by' => $request->bought_by,
                 'created_at' => $currentDateTime,
                 'updated_at' => $request->updated_at,
@@ -67,6 +66,8 @@ class PropertyController extends Controller
                 'num_bathrooms' => $request->num_bathrooms,
                 'num_rooms' => $request->num_rooms,
                 'pets' => $request->pets,
+                'equipment' => $request->equipment,
+                'garden' => $request->garden,
                 'fully_fitted_kitchen' => $request->fully_fitted_kitchen,
                 'furnished' => $request->furnished,
                 'condition' => $request->condition,
@@ -145,7 +146,6 @@ class PropertyController extends Controller
                     'type_house' => $request->type_house,
                     'area' => $request->area, //m2
                     'status' => $request->status, // sold
-                    'sold_at' => $request->sold_at,
                     'bought_by' => $request->bought_by,
                     'created_at' => $request->created_at,
                     'updated_at' => $currentDateTime,

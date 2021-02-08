@@ -27,9 +27,11 @@ class VerifyFirebase
                 'message' => 'Prueba de nuevo '
             ], 401);
         }
+
         $auth = app('firebase.auth');
         // Retrieve the Firebase credential's token
-        $idTokenString = $request->input('Firebasetoken');
+        // $idTokenString = $request->input('Firebasetoken');
+        $idTokenString = $request->bearerToken();
         try { // Try to verify the Firebase credential token with Google
 
             $verifiedIdToken = $auth->verifyIdToken($idTokenString);
