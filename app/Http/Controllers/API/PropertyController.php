@@ -40,11 +40,11 @@ class PropertyController extends Controller
      */
     public function store(StoreProperty $request)
     {
-        $propertyTypes = ['duplex','house','penthouse'];
+        // $propertyTypes = ['duplex','house','penthouse'];
 
-        if(!in_array($request->type,$propertyTypes)){
-            return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
-        }
+        // if(!in_array($request->type,$propertyTypes)){
+        //     return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
+        // }
 
         $currentDateTime = date('Y-m-d H:i:s');
 
@@ -54,6 +54,7 @@ class PropertyController extends Controller
             [
                 'location' => $request->location,
                 'type' => $request->type,
+                'type_house' => $request->type_house,
                 'area' => $request->area, //m2
                 'status' => $request->status, // sold
                 'sold_at' => $request->sold_at,
@@ -71,6 +72,7 @@ class PropertyController extends Controller
                 'condition' => $request->condition,
                 'contact' => $request->contact, //id of the user in charge of the property
                 'title' => $request->title,
+                'building_use' => $request->title,
             ]
         );
 
@@ -140,6 +142,7 @@ class PropertyController extends Controller
                         'property_id' => 3,
                     ],
                     'type' => $request->type,
+                    'type_house' => $request->type_house,
                     'area' => $request->area, //m2
                     'status' => $request->status, // sold
                     'sold_at' => $request->sold_at,
