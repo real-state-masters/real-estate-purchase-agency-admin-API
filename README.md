@@ -42,9 +42,7 @@
   Properties collection: 
    ```
   
-
-{
-"id": 2342,
+  {
 "location": {
 "id": 124234234,
 "coordinates": [
@@ -55,12 +53,13 @@
 "context": {},
 "property_id": 3
 },
-"type": "home",  -> house, office
-"area": 232, -> int(square meters)
+"type": "home", 
+"type_house":"", // 0 -> duplex, 1->house, 2->penthouse
+"area": 232,
 "status": "true", // true -> not sold, false-> sold
 "bought_by": "3423423", // int-> user_id, null/undefined/false -> not bought by anyone
-"created_at": "", type : date
-"updated_at": " , type: date
+"created_at": "",
+"updated_at": "",
 "price": 99999993,
 "images": [], // array of url's
 "description": "asfasdfsfd",
@@ -75,9 +74,9 @@
 "air_condition":false,
 "terrace":false,
 "contact": 32423422, // admin email
-"title": "The best one"
-"building_use : null / -> null , 0-> private, 1->co_working , 2-> security_system
-
+"title": "The best one",
+"building_use" : null // if type==office , then building use must be integer, else whatever // -> null , 0-> private, 1->co_working , 2-> security_system
+}
 
 }
       ```
