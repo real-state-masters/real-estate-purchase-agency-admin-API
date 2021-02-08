@@ -22,7 +22,6 @@ class UpdateUser extends FormRequestAPI
             'password' => 'required | string',
             'phone_number' => 'required',
             'last_name' => 'required | string',
-            //
         ];
     }
 }
