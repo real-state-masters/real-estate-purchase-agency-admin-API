@@ -40,11 +40,11 @@ class PropertyController extends Controller
      */
     public function store(StoreProperty $request)
     {
-        $propertyTypes = ['duplex','house','penthouse'];
+        // $propertyTypes = ['duplex','house','penthouse'];
 
-        if(!in_array($request->type,$propertyTypes)){
-            return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
-        }
+        // if(!in_array($request->type,$propertyTypes)){
+        //     return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
+        // }
 
         $currentDateTime = date('Y-m-d H:i:s');
 
@@ -54,6 +54,7 @@ class PropertyController extends Controller
             [
                 'location' => $request->location,
                 'type' => $request->type,
+                'type_house' => $request->type_house,
                 'area' => $request->area, //m2
                 'status' => $request->status, // sold
                 'bought_by' => $request->bought_by,
@@ -76,7 +77,6 @@ class PropertyController extends Controller
                 'swimming_pool' => $request->swiming_pool, // type: bool
                 'lift' => $request->lift,
                 'type_house' => $request->type_house
-
             ]
         );
 
@@ -146,9 +146,9 @@ class PropertyController extends Controller
                         'property_id' => 3,
                     ],
                     'type' => $request->type,
+                    'type_house' => $request->type_house,
                     'area' => $request->area, //m2
                     'status' => $request->status, // sold
-                    'sold_at' => $request->sold_at,
                     'bought_by' => $request->bought_by,
                     'created_at' => $request->created_at,
                     'updated_at' => $currentDateTime,
