@@ -66,14 +66,17 @@ class PropertyController extends Controller
                 'num_bathrooms' => $request->num_bathrooms,
                 'num_rooms' => $request->num_rooms,
                 'pets' => $request->pets,
-                'equipment' => $request->equipment,
-                'garden' => $request->garden,
-                'fully_fitted_kitchen' => $request->fully_fitted_kitchen,
-                'furnished' => $request->furnished,
                 'condition' => $request->condition,
                 'contact' => $request->contact, //id of the user in charge of the property
                 'title' => $request->title,
-                'building_use' => $request->title,
+                'building_use' => $request->building_use,
+                'air_condition' => $request->air_condition, // type: bool
+                'terrace' => $request->terrace,
+                'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished  
+                'garden' => $request->garden, // type:bool
+                'swimming_pool' => $request->swiming_pool, // type: bool
+                'lift' => $request->lift,
+                'type_house' => $request->type_house
             ]
         );
 
