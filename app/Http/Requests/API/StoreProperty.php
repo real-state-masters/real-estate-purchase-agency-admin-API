@@ -17,25 +17,30 @@ class StoreProperty extends FormRequestAPI
     {
         //properties
         return [
-            'location' => 'required',
-            'type' => 'string | required', //check array in controller
-            'area' => 'integer | required', //m2
-            'status' => 'boolean', // False = sold
-            'sold_at' => 'date', //
-            'bought_by' => 'integer', // user Id
-            // 'created_at' => 'date | required', //
+            'location' => 'required', // type: object
+            'type' => 'string | required', // type: enum  (home/office)
+            'type_house' => 'integer | required', // type: int, -1-> not a house,  0 -> duplex, 1->house, 2->penthouse
+            'area' => 'integer | required', // type int ( m^²)
+            'status' => 'boolean | required', // type: boolean .  true -> not sold, false-> sold
+            'bought_by' => 'integer | required', // type: int ( user_id).  if -1-> not bought by anyone
+            // 'created_at' => 'date | required',
             // 'updated_at' => 'date',
-            'price' => 'integer | required',
-            'images' => 'array | required',
-            'description' => 'string',
-            'num_bathrooms' => 'integer | required',
-            'num_rooms' => 'integer | required',
-            'pets' => 'boolean',
-            'fully_fitted_kitchen' => 'boolean',
-            'furnished' => 'boolean',
-            'condition' => 'integer', // 0 = new homes | 1 = good condition | 2 = needs renovation
-            'contact' => 'integer | required', //id of the user in charge of the property
-            'title' => 'string | required',
+            'price' => 'integer | required', // type: int 
+            'images' => 'array | required', // array of url's  // type: array
+            'description' => 'string', // type:string
+            'num_bathrooms' => 'integer', // type: int
+            'num_rooms' => 'integer', // type: int
+            'pets' => 'boolean | required', // type: bool
+            'equipment' => 'integer', //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished  
+            'garden' => 'boolean | required', // type:bool
+            'swimming_pool' => 'boolean | required', // type: bool
+            'lift' => 'boolean | required', // type: bool
+            'condition' => 'integer', // type: int , 0-> new homes, 1-> good condition , 2-> needs renovation
+            'air_condition' => 'boolean | required', // type: bool
+            'terrace' => 'boolean | required', // type: bool
+            'contact' => 'email', // admin email
+            'title' => 'String', // type: string
+            'building_use' => 'integer'  // type:integer, -1-> not an office,  0-> private, 1->co_working , 2-> security_system
         ];
     }
 }

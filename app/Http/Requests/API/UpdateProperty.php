@@ -15,24 +15,29 @@ class UpdateProperty extends FormRequestAPI
     public function rules()
     {
         return [
-            'location' => 'required',
-            'type' => 'string',
-            'area' => 'integer', //m2
-            'status' => 'boolean', // sold
-            'sold_at' => 'date',
-            'bought_by' => 'integer',
-            // 'updated_at' => 'integer',
-            'price' => 'integer',
-            'images' => 'array',
-            'description' => 'string',
-            'num_bathrooms' => 'integer',
-            'num_rooms' => 'integer',
-            'pets' => 'boolean',
-            'fully_fitted_kitchen' => 'boolean',
-            'furnished' => 'boolean',
-            'condition' => 'integer',
-            'contact' => 'integer', //id of the user in charge of the property
-            'title' => 'string',
+            'location' => 'required', // type: object
+            'type' => 'string | required', // type: enum  (home/office)
+            'type_house' => 'integer | required', // type: int, -1-> not a house,  0 -> duplex, 1->house, 2->penthouse
+            'area' => 'integer | required', // type int ( m^²)
+            'status' => 'boolean | required', // type: boolean .  true -> not sold, false-> sold
+            'bought_by' => 'integer | required', // type: int ( user_id).  if -1-> not bought by anyone
+            // 'updated_at' => 'date',
+            'price' => 'integer | required', // type: int
+            'images' => 'array | required', // array of url's  // type: array
+            'description' => 'string', // type:string
+            'num_bathrooms' => 'integer', // type: int
+            'num_rooms' => 'integer', // type: int
+            'pets' => 'boolean | required', // type: bool
+            'equipment' => 'integer', //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished
+            'garden' => 'boolean | required', // type:bool
+            'swimming_pool' => 'boolean | required', // type: bool
+            'lift' => 'boolean | required', // type: bool
+            'condition' => 'integer', // type: int , 0-> new homes, 1-> good condition , 2-> needs renovation
+            'air_condition' => 'boolean | required', // type: bool
+            'terrace' => 'boolean | required', // type: bool
+            'contact' => 'email', // admin email
+            'title' => 'String', // type: string
+            'building_use' => 'integer'  // type:integer, -1-> not an office,  0-> private, 1->co_working , 2-> security_system
         ];
     }
 }
