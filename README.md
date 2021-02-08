@@ -61,7 +61,7 @@
 "area": 232, // type int ( m^²)
 "status": true,  // type: boolean .  true -> not sold, false-> sold , 
 "bought_by": 3423423, // type: int ( user_id).  if -1-> not bought by anyone
-"created_at": , / /type: date ( timestamp)
+"created_at": , // type: date ( timestamp)
 "updated_at": "", // type : date ( timestamp)
 "price": 99999993,  // type: int 
 "images": [], // array of url's  // type: array
