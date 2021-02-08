@@ -77,8 +77,6 @@
 "title": "The best one",
 "building_use" : null // if type==office , then building use must be integer, else whatever // -> null , 0-> private, 1->co_working , 2-> security_system
 }
-
-}
       ```
 
     
