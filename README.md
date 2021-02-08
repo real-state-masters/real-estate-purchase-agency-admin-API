@@ -55,7 +55,7 @@
 "context": {},
 "property_id": 3
 },
-"type": "home",
+"type": "home",  -> house, office
 "area": 232, -> int(square meters)
 "status": "true", // true -> not sold, false-> sold
 "bought_by": "3423423", // int-> user_id, null/undefined/false -> not bought by anyone
@@ -76,6 +76,9 @@
 "terrace":false,
 "contact": 32423422, // admin email
 "title": "The best one"
+"building_use : null / -> null , 0-> private, 1->co_working , 2-> security_system
+
+
 }
       ```
 
