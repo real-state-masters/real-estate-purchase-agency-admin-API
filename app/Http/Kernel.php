@@ -43,9 +43,6 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-        'firebase'=>[
-            \App\Http\Middleware\VerifyFirebase::class,
-        ],
     ];
 
     /**

@@ -1,0 +1,33 @@
+{
+    "id": 2343,
+    "location": [
+    {
+    "id": 124234235,
+    "coordinates": [
+    234234.23,
+    141234.23
+    ],
+    "address": "my street 23",
+    "context": {},
+    "property_id": 3
+    }
+    ],
+    "type": "home",
+    "area": 232,
+    "status": "sold",
+    "sold_at": "yesterday",
+    "bought_by": "3423423",
+    "created_at": "two days ago",
+    "updated_at": "23423423",
+    "price": 99999993,
+    "images": [],
+    "description": "asfasdfsfd",
+    "num_bathrooms": 2,
+    "num_rooms": 3,
+    "pets": true,
+    "fully_fitted_kitchen": true,
+    "furnished": true,
+    "condition": 0,
+    "contact": 32423422,
+    "title": "The best one"
+    }

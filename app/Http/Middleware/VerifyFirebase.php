@@ -18,7 +18,15 @@ class VerifyFirebase
     public function handle(Request $request, Closure $next)
     {
         // Launch Firebase Auth
-        echo 'hiasdf';
+
+        if(isset($request->jwt)){
+            if(env('CLIENT_TOKEN')===$request->jwt){
+                return $next($request);
+            }
+            return response()->json([
+                'message' => 'Prueba de nuevo '
+            ], 401);
+        }
         $auth = app('firebase.auth');
         // Retrieve the Firebase credential's token
         $idTokenString = $request->input('Firebasetoken');
@@ -36,6 +44,6 @@ class VerifyFirebase
                 'message' => 'Unauthorized - Token is invalid: ' . $e->getMessage()
             ], 401);
         }
-        //return $next($request);
+        return $next($request);
     }
 }
