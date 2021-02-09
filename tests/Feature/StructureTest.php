@@ -6,21 +6,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class StructureTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function test_get()
-    {
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer '.env('CLIENT_TOKEN'),
-        ])->get('/api/properties');
-
-        $response->assertStatus(200);
-    }
 
     public function test_structure()
     {
