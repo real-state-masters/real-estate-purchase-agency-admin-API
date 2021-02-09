@@ -41,15 +41,8 @@ class PropertyController extends Controller
      */
     public function store(StoreProperty $request)
     {
-        // $propertyTypes = ['duplex','house','penthouse'];
-
-        // if(!in_array($request->type,$propertyTypes)){
-        //     return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
-        // }
 
         $currentDateTime = date('Y-m-d H:i:s');
-
-
 
         Property::insertOne(
             [
@@ -68,7 +61,7 @@ class PropertyController extends Controller
                 'pets' => $request->pets,
                 'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished  
                 'garden' => $request->garden, // type:bool
-                'swimming_pool' => $request->swiming_pool, // type: bool
+                'swimming_pool' => $request->swimming_pool, // type: bool
                 'lift' => $request->lift,
                 'condition' => $request->condition,
                 'air_condition' => $request->air_condition, // type: bool
@@ -151,7 +144,7 @@ class PropertyController extends Controller
                     'pets' => $request->pets,
                     'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished 
                     'garden' => $request->garden, // type:bool
-                    'swimming_pool' => $request->swiming_pool, // type: bool
+                    'swimming_pool' => $request->swimming_pool, // type: bool
                     'lift' => $request->lift,
                     'condition' => $request->condition,
                     'air_condition' => $request->air_condition, // type: bool
