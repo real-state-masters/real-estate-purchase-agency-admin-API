@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "jenssegers/mongodb": "^3.8",
         "kreait/firebase-php": "^5.14",
         "kreait/laravel-firebase": "^3.1",
         "laravel/framework": "^8.12",
