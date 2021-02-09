@@ -23,8 +23,6 @@ class StoreProperty extends FormRequestAPI
             'area' => 'integer | required', // type int ( m^²)
             'status' => 'boolean | required', // type: boolean .  true -> not sold, false-> sold
             'bought_by' => 'integer | required', // type: int ( user_id).  if -1-> not bought by anyone
-            // 'created_at' => 'date | required',
-            // 'updated_at' => 'date',
             'price' => 'integer | required', // type: int 
             'images' => 'array | required', // array of url's  // type: array
             'description' => 'string', // type:string
