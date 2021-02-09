@@ -15,17 +15,18 @@ class ExampleTest extends TestCase
      */
     public function test_get()
     {
-        $response = $this->get('/api/properties/?jwt=' . env('CLIENT_TOKEN'));
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer '.env('CLIENT_TOKEN'),
+        ])->get('/api/properties');
 
         $response->assertStatus(200);
     }
 
-
-
-
     public function test_structure()
     {
-        $response = $this->get('/api/properties?jwt='.env('CLIENT_TOKEN'));
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer '.env('CLIENT_TOKEN'),
+        ])->get('/api/properties');
 
         $a = sizeOf($response->getData());
 

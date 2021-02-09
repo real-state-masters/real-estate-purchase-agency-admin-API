@@ -25,7 +25,7 @@ class PropertyController extends Controller
     public function index()
     {
         //
-        $data = new Mongo;
+        //$data = new Mongo;
         //$conn = $data->{'acme'}->properties;
         //return $conn->find()->toArray();
         //return $this->properties->find()->toArray();
@@ -47,7 +47,6 @@ class PropertyController extends Controller
         // }
 
         $currentDateTime = date('Y-m-d H:i:s');
-
 
 
         Property::insertOne(

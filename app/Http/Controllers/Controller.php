@@ -21,7 +21,7 @@ class Controller extends BaseController
         return response()->json($response,$code);
     }
 
-    public static function sendError($errors=[],$message="Error ocurred",$code=200)
+    public static function sendError($errors=[],$message="Error ocurred",$code=400)
     {
         $response = [
             'success'=>false,

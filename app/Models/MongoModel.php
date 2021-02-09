@@ -16,8 +16,8 @@ class MongoModel
 
     public function __construct($collection)
     {
-        $this->db = (new Mongo('mongodb+srv://ariel:'.env('MONGODB_PASSWORD').'@cluster0.zkwdz.mongodb.net/'.self::DATABASE.'?retryWrites=true&w=majority'))->{self::DATABASE};
-        // $this->db = (new Mongo)->{self::DATABASE};
+        //$this->db = (new Mongo('mongodb+srv://ariel:'.env('MONGODB_PASSWORD').'@cluster0.zkwdz.mongodb.net/'.self::DATABASE.'?retryWrites=true&w=majority'))->{self::DATABASE};
+        $this->db = (new Mongo)->{self::DATABASE};
         static::$instance = $this->db->{$collection};
     }
 
