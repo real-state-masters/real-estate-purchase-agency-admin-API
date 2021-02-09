@@ -25,12 +25,12 @@ class VerifyFirebase
         // $idTokenString = $request->input('Firebasetoken');
         $idTokenString = $request->bearerToken();
 
-        return response()->json([
-            'message' => $idTokenString, 'other'=>env('CLIENT_TOKEN')
-        ], 401);
         
         if ($idTokenString == env('CLIENT_TOKEN')) {
-
+            
+            return response()->json([
+                'message' => $idTokenString, 'other'=>env('CLIENT_TOKEN')
+            ], 401);
             return $next($request);
         }
 
