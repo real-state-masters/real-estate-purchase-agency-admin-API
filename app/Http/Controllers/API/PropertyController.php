@@ -118,11 +118,7 @@ class PropertyController extends Controller
      */
     public function update(UpdateProperty $request, $id)
     {
-        $propertyTypes = [0,1,2];
 
-        if(!in_array($request->type,$propertyTypes)){
-            return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
-        } 
         $currentDateTime = date('Y-m-d H:i:s');
 
         Property::updateOne(
