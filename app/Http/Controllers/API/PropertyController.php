@@ -53,6 +53,7 @@ class PropertyController extends Controller
                 'status' => $request->status, // sold
                 'bought_by' => $request->bought_by,
                 'created_at' => $currentDateTime,
+                'updated_at' => $currentDateTime,
                 'price' => $request->price,
                 'images' => $request->images,
                 'description' => $request->description,
@@ -131,6 +132,7 @@ class PropertyController extends Controller
                     'area' => $request->area, //m2
                     'status' => $request->status, // sold
                     'bought_by' => $request->bought_by,
+                    'created_at' => $request->created_at,
                     'updated_at' => $currentDateTime,
                     'price' => $request->price,
                     'images' => $request->images,
