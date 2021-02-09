@@ -108,7 +108,7 @@ class PropertyController extends Controller
 
     public function searchLocation($location)
     {
-        $property = Property::find(['contact'=> new Regex($location)])->toArray();
+        $property = Property::find(['location.address'=> new Regex($location,'i')])->toArray();
 
         if(!$property){
             return Controller::sendError(['location'=>'Location not found'],'Property not found');
