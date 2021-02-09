@@ -184,7 +184,7 @@ class PropertyController extends Controller
         if(!$property){
             return Controller::sendError(['Id'=>'Property id not found'],'Property not found');
         }
-        return Controller::sendResponse($property);
+        return Controller::sendResponse(Property::findOne($request->id));
     }
 
     /**
