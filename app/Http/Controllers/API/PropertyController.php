@@ -9,6 +9,7 @@ use App\Http\Requests\API\UpdateProperty;
 use App\Models\Property;
 use MongoDB\Client as Mongo;
 use App\Http\Requests\test;
+use MongoDB\BSON\Regex;
 
 
 class PropertyController extends Controller
@@ -40,14 +41,8 @@ class PropertyController extends Controller
      */
     public function store(StoreProperty $request)
     {
-        // $propertyTypes = ['duplex','house','penthouse'];
-
-        // if(!in_array($request->type,$propertyTypes)){
-        //     return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
-        // }
 
         $currentDateTime = date('Y-m-d H:i:s');
-
 
         Property::insertOne(
             [
@@ -58,24 +53,22 @@ class PropertyController extends Controller
                 'status' => $request->status, // sold
                 'bought_by' => $request->bought_by,
                 'created_at' => $currentDateTime,
-                'updated_at' => $request->updated_at,
                 'price' => $request->price,
                 'images' => $request->images,
                 'description' => $request->description,
                 'num_bathrooms' => $request->num_bathrooms,
                 'num_rooms' => $request->num_rooms,
                 'pets' => $request->pets,
+                'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished  
+                'garden' => $request->garden, // type:bool
+                'swimming_pool' => $request->swimming_pool, // type: bool
+                'lift' => $request->lift,
                 'condition' => $request->condition,
+                'air_condition' => $request->air_condition, // type: bool
+                'terrace' => $request->terrace,
                 'contact' => $request->contact, //id of the user in charge of the property
                 'title' => $request->title,
                 'building_use' => $request->building_use,
-                'air_condition' => $request->air_condition, // type: bool
-                'terrace' => $request->terrace,
-                'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished  
-                'garden' => $request->garden, // type:bool
-                'swimming_pool' => $request->swiming_pool, // type: bool
-                'lift' => $request->lift,
-                'type_house' => $request->type_house
             ]
         );
 
@@ -94,7 +87,7 @@ class PropertyController extends Controller
 
         $property = Property::findOne($id);
         if(!$property){
-            return Controller::sendError(['_id'=>'Id not found'],'Property not found');
+            return Controller::sendError('Property not found');
         }
         return Controller::sendResponse($property);
     }
@@ -108,8 +101,7 @@ class PropertyController extends Controller
 
     public function searchLocation($location)
     {
-
-        $property = Property::find(['location'=>$location])->toArray();
+        $property = Property::find(['location.address'=> new Regex($location,'i')])->toArray();
 
         if(!$property){
             return Controller::sendError(['location'=>'Location not found'],'Property not found');
@@ -126,30 +118,19 @@ class PropertyController extends Controller
      */
     public function update(UpdateProperty $request, $id)
     {
-        $propertyTypes = ['duplex','house','penthouse'];
 
-        if(!in_array($request->type,$propertyTypes)){
-            return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
-        }
         $currentDateTime = date('Y-m-d H:i:s');
 
         Property::updateOne(
             ["_id" => $id],
             [
                 '$set' => [
-                    'location' => [
-                        'id' => "124234fas234d",
-                        'coordinates' => [234234.23, 141234.23], //useful for map
-                        'address' => 'my street 23',
-                        'context' => ['pais' => 'españa', 'comercios' => 'tiendas'], //reference to country,region, place
-                        'property_id' => 3,
-                    ],
+                    'location' => $request->location,
                     'type' => $request->type,
                     'type_house' => $request->type_house,
                     'area' => $request->area, //m2
                     'status' => $request->status, // sold
                     'bought_by' => $request->bought_by,
-                    'created_at' => $request->created_at,
                     'updated_at' => $currentDateTime,
                     'price' => $request->price,
                     'images' => $request->images,
@@ -157,11 +138,16 @@ class PropertyController extends Controller
                     'num_bathrooms' => $request->num_bathrooms,
                     'num_rooms' => $request->num_rooms,
                     'pets' => $request->pets,
-                    'fully_fitted_kitchen' => $request->fully_fitted_kitchen,
-                    'furnished' => $request->furnished,
+                    'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished 
+                    'garden' => $request->garden, // type:bool
+                    'swimming_pool' => $request->swimming_pool, // type: bool
+                    'lift' => $request->lift,
                     'condition' => $request->condition,
+                    'air_condition' => $request->air_condition, // type: bool
+                    'terrace' => $request->terrace,
                     'contact' => $request->contact, //id of the user in charge of the property
                     'title' => $request->title,
+                    'building_use' => $request->building_use,
                 ]
             ]
         );
@@ -178,12 +164,15 @@ class PropertyController extends Controller
     public function changeStatus(Request $request)
     {
 
-        $property = Property::update(['_id'=>$request->id],['$set'=>['status'=>false]]);
-
+        $property = Property::findOne($request->id);
+        
         if(!$property){
-            return Controller::sendError(['Id'=>'Property id not found'],'Property not found');
+            
+            return Controller::sendError('Property not found');
         }
-        return Controller::sendResponse(Property::findOne($request->id));
+
+        Property::update(['_id'=>$request->id],['$set'=>['status'=>false]]);
+        return Controller::sendResponse($property);
     }
 
     /**
