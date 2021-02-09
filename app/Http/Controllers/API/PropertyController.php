@@ -60,24 +60,22 @@ class PropertyController extends Controller
                 'status' => $request->status, // sold
                 'bought_by' => $request->bought_by,
                 'created_at' => $currentDateTime,
-                'updated_at' => $request->updated_at,
                 'price' => $request->price,
                 'images' => $request->images,
                 'description' => $request->description,
                 'num_bathrooms' => $request->num_bathrooms,
                 'num_rooms' => $request->num_rooms,
                 'pets' => $request->pets,
-                'condition' => $request->condition,
-                'contact' => $request->contact, //id of the user in charge of the property
-                'title' => $request->title,
-                'building_use' => $request->building_use,
-                'air_condition' => $request->air_condition, // type: bool
-                'terrace' => $request->terrace,
                 'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished  
                 'garden' => $request->garden, // type:bool
                 'swimming_pool' => $request->swiming_pool, // type: bool
                 'lift' => $request->lift,
-                'type_house' => $request->type_house
+                'condition' => $request->condition,
+                'air_condition' => $request->air_condition, // type: bool
+                'terrace' => $request->terrace,
+                'contact' => $request->contact, //id of the user in charge of the property
+                'title' => $request->title,
+                'building_use' => $request->building_use,
             ]
         );
 
@@ -127,7 +125,7 @@ class PropertyController extends Controller
      */
     public function update(UpdateProperty $request, $id)
     {
-        $propertyTypes = ['duplex','house','penthouse'];
+        $propertyTypes = [0,1,2];
 
         if(!in_array($request->type,$propertyTypes)){
             return Controller::sendError(['type'=>'Incorrect type'],'Property type is not correct.');
@@ -138,19 +136,12 @@ class PropertyController extends Controller
             ["_id" => $id],
             [
                 '$set' => [
-                    'location' => [
-                        'id' => "124234fas234d",
-                        'coordinates' => [234234.23, 141234.23], //useful for map
-                        'address' => 'my street 23',
-                        'context' => ['pais' => 'españa', 'comercios' => 'tiendas'], //reference to country,region, place
-                        'property_id' => 3,
-                    ],
+                    'location' => $request->location,
                     'type' => $request->type,
                     'type_house' => $request->type_house,
                     'area' => $request->area, //m2
                     'status' => $request->status, // sold
                     'bought_by' => $request->bought_by,
-                    'created_at' => $request->created_at,
                     'updated_at' => $currentDateTime,
                     'price' => $request->price,
                     'images' => $request->images,
@@ -158,11 +149,16 @@ class PropertyController extends Controller
                     'num_bathrooms' => $request->num_bathrooms,
                     'num_rooms' => $request->num_rooms,
                     'pets' => $request->pets,
-                    'fully_fitted_kitchen' => $request->fully_fitted_kitchen,
-                    'furnished' => $request->furnished,
+                    'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished 
+                    'garden' => $request->garden, // type:bool
+                    'swimming_pool' => $request->swiming_pool, // type: bool
+                    'lift' => $request->lift,
                     'condition' => $request->condition,
+                    'air_condition' => $request->air_condition, // type: bool
+                    'terrace' => $request->terrace,
                     'contact' => $request->contact, //id of the user in charge of the property
                     'title' => $request->title,
+                    'building_use' => $request->building_use,
                 ]
             ]
         );
