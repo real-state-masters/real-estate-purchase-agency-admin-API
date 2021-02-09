@@ -19,19 +19,21 @@ class VerifyFirebase
     {
         // Launch Firebase Auth
 
-        if(isset($request->jwt)){
-            if(env('CLIENT_TOKEN')===$request->jwt){
-                return $next($request);
-            }
-            return response()->json([
-                'message' => 'Prueba de nuevo '
-            ], 401);
-        }
 
         $auth = app('firebase.auth');
         // Retrieve the Firebase credential's token
         // $idTokenString = $request->input('Firebasetoken');
         $idTokenString = $request->bearerToken();
+
+        
+        if ($idTokenString == env('CLIENT_TOKEN')) {
+            
+            // return response()->json([
+            //     'message' => $idTokenString, 'other'=>env('CLIENT_TOKEN')
+            // ], 401);
+            return $next($request);
+        }
+
         try { // Try to verify the Firebase credential token with Google
 
             $verifiedIdToken = $auth->verifyIdToken($idTokenString);

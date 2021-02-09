@@ -176,15 +176,15 @@ class PropertyController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function changeStatus($id)
+    public function changeStatus(Request $request)
     {
 
-        $property = Property::update(['_id'=>$id],['$set'=>['status'=>false]]);
+        $property = Property::update(['_id'=>$request->id],['$set'=>['status'=>false]]);
 
         if(!$property){
             return Controller::sendError(['Id'=>'Property id not found'],'Property not found');
         }
-        return Controller::sendResponse($property);
+        return Controller::sendResponse(Property::findOne($request->id));
     }
 
     /**
