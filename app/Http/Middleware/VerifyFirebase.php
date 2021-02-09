@@ -19,15 +19,19 @@ class VerifyFirebase
     {
         // Launch Firebase Auth
 
-        
+
         $auth = app('firebase.auth');
         // Retrieve the Firebase credential's token
         // $idTokenString = $request->input('Firebasetoken');
         $idTokenString = $request->bearerToken();
 
-        if($idTokenString == env('CLIENT_TOKEN')){
-            
-                return $next($request);
+        return response()->json([
+            'message' => $idTokenString, 'other'=>env('CLIENT_TOKEN')
+        ], 401);
+        
+        if ($idTokenString == env('CLIENT_TOKEN')) {
+
+            return $next($request);
         }
 
         try { // Try to verify the Firebase credential token with Google
