@@ -28,10 +28,6 @@ class VerifyFirebase
         if($idTokenString == env('CLIENT_TOKEN')){
             
                 return $next($request);
-        }else{ 
-            return response()->json([
-                'message' => 'Prueba de nuevo '
-            ], 401);
         }
 
         try { // Try to verify the Firebase credential token with Google
