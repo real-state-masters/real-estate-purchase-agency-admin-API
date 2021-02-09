@@ -9,6 +9,7 @@ use App\Http\Requests\API\UpdateProperty;
 use App\Models\Property;
 use MongoDB\Client as Mongo;
 use App\Http\Requests\test;
+use MongoDB\BSON\Regex;
 
 
 class PropertyController extends Controller
@@ -95,7 +96,7 @@ class PropertyController extends Controller
 
         $property = Property::findOne($id);
         if(!$property){
-            return Controller::sendError(['_id'=>'Id not found'],'Property not found');
+            return Controller::sendError('Property not found');
         }
         return Controller::sendResponse($property);
     }
@@ -109,8 +110,7 @@ class PropertyController extends Controller
 
     public function searchLocation($location)
     {
-
-        $property = Property::find(['location'=>$location])->toArray();
+        $property = Property::find(['contact'=> new Regex($location)])->toArray();
 
         if(!$property){
             return Controller::sendError(['location'=>'Location not found'],'Property not found');
@@ -179,12 +179,15 @@ class PropertyController extends Controller
     public function changeStatus(Request $request)
     {
 
-        $property = Property::update(['_id'=>$request->id],['$set'=>['status'=>false]]);
-
+        $property = Property::findOne($request->id);
+        
         if(!$property){
-            return Controller::sendError(['Id'=>'Property id not found'],'Property not found');
+            
+            return Controller::sendError('Property not found');
         }
-        return Controller::sendResponse(Property::findOne($request->id));
+
+        Property::update(['_id'=>$request->id],['$set'=>['status'=>false]]);
+        return Controller::sendResponse($property);
     }
 
     /**
