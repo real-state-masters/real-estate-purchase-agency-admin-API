@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 // The catch-all will match anything except the previous defined routes.
 Route::resource('/properties',PropertyController::class)->middleware("firebase");
 Route::get('/properties/location/{city}',[PropertyController::class,'searchLocation'])->middleware("firebase");
+Route::get('/properties/get/last',[PropertyController::class,'lastProperties'])->middleware("firebase");
 Route::post('/properties/buy',[PropertyController::class,'changeStatus'])->middleware("firebase");
 
 

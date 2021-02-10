@@ -10,6 +10,8 @@ use App\Models\Property;
 use MongoDB\Client as Mongo;
 use App\Http\Requests\test;
 use MongoDB\BSON\Regex;
+use MongoDB\BSON\UTCDateTime;
+use Carbon\Carbon;
 
 
 class PropertyController extends Controller
@@ -34,6 +36,20 @@ class PropertyController extends Controller
     }
 
     /**
+     * Display a listing of the resource for the last 24 hours.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function lastProperties()
+    {
+        $yesterday = Carbon::now()->subHours(24);
+
+        $properties = Property::find(['created_at'=> ['$gte'=> $yesterday->toDateTimeString()]])->toArray();
+        
+        return Controller::sendResponse($properties);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -42,7 +58,7 @@ class PropertyController extends Controller
     public function store(StoreProperty $request)
     {
 
-        $currentDateTime = date('Y-m-d H:i:s');
+        $currentDateTime = Carbon::now()->toDateTimeString();
 
         Property::insertOne(
             [
@@ -120,7 +136,7 @@ class PropertyController extends Controller
     public function update(UpdateProperty $request, $id)
     {
 
-        $currentDateTime = date('Y-m-d H:i:s');
+        $currentDateTime = Carbon::now()->toDateTimeString();
 
         Property::updateOne(
             ["_id" => $id],
