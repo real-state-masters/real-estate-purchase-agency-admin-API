@@ -18,7 +18,8 @@
         "laravel/framework": "^8.12",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
-        "mongodb/mongodb": "^1.8"
+        "mongodb/mongodb": "^1.8",
+        "nesbot/carbon": "^2.45"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
