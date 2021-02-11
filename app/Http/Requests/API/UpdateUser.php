@@ -18,10 +18,6 @@ class UpdateUser extends FormRequestAPI
     {
         return [
             'name'=>'required | string',
-            'email'=>'required | email',
-            'password' => 'required | string',
-            'phone_number' => 'required',
-            'last_name' => 'required | string',
         ];
     }
 }

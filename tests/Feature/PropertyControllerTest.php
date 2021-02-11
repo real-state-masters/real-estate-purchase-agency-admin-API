@@ -19,7 +19,14 @@ class PropertyControllerTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . env('CLIENT_TOKEN'),
         ])->get('/api/properties');
-        $response->assertStatus(200);
+        return $response->assertStatus(200);
+    }
+    /**
+     * @depends test_get
+     */
+    public function test_DbEmpty($array){
+
+        $this->assertGreaterThan(0, count($array->getData()));
     }
 
     public function test_post()
@@ -91,5 +98,19 @@ class PropertyControllerTest extends TestCase
             ]
         );
         $response->assertStatus(200);
+    }
+
+    /**
+     * @depends test_post
+     */
+
+    public function test_delete($id)
+    {
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . env('CLIENT_TOKEN'),
+        ])->delete('/api/properties/' . $id,);
+
+        $response->assertStatus(200);
+
     }
 }

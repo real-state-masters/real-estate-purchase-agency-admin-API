@@ -18,9 +18,6 @@ class StoreUser extends FormRequestAPI
             //
             'name'=>'required | string',
             'email'=>'required | email',
-            'password' => 'required | string',
-            'phone_number' => 'required',
-            'last_name' => 'required | string',
         ];
     }
 }

@@ -53,9 +53,9 @@ class AuthController extends Controller
             ], 401);
         }
 
-        
+
         //$user = FirebaseUser::create(["firebaseUID" => $data["firebaseUID"]]);
-        
+
         $data['password'] = Hash::make($request->password);
         User::insert($data);
 
