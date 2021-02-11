@@ -47,14 +47,14 @@
   
   {
 "location": { // type: object
-"id": 124234234, // type: int
-"coordinates": [
-234234.23,
-141234.23
-],
-"address": "my street 23",  //  type: string
-"context": {},    // type:object
-"property_id": 3  // type:int
+      "id": 124234234, // type: int
+      "coordinates": [
+      234234.23,
+      141234.23
+      ],
+      "address": "my street 23",  //  type: string
+      "context": {},    // type:object
+      "property_id": 3  // type:int
 },
 "type": "home",     // type: enum  (home/office)
 "type_house":0, // type: int, -1-> not a house,  0 -> duplex, 1->house, 2->penthouse  
