@@ -9,12 +9,7 @@ use Tests\TestCase;
 class PropertyControllerTest extends TestCase
 {
     public $id;
-/*
-    public function __construct($id)
-    {
-        $this->$id = $id;
 
-    }*/
         /**
          * A basic feature test example.
          *
@@ -58,15 +53,15 @@ class PropertyControllerTest extends TestCase
                 'title' => 'test',
                 'building_use' => 0,
             ]);
-
-            $id = "prueba";//$response->getData()->data->{'_id'};
-            dd($this->id);
+            $this->id = "prueba";//$response->getData()->data->{'_id'};
+            var_dump($this->id);
             $response->assertStatus(200);
 
         }
 
         public function test_put()
         {
+            var_dump($this->id);
             $response = $this->withHeaders([
                 'Authorization' => 'Bearer '.env('CLIENT_TOKEN'),
             ])->put('/api/properties/'.$this->id,
