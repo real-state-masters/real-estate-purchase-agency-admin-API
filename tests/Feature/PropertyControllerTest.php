@@ -8,63 +8,63 @@ use Tests\TestCase;
 
 class PropertyControllerTest extends TestCase
 {
-    public $id;
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     */
 
-        /**
-         * A basic feature test example.
-         *
-         * @return void
-         */
+    public function test_get()
+    {
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . env('CLIENT_TOKEN'),
+        ])->get('/api/properties');
+        $response->assertStatus(200);
+    }
 
-        public function test_get()
-        {
-            $response = $this->withHeaders([
-                'Authorization' => 'Bearer '.env('CLIENT_TOKEN'),
-            ])->get('/api/properties');
-            $response->assertStatus(200);
+    public function test_post()
+    {
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . env('CLIENT_TOKEN'),
+        ])->post('/api/properties', [
+            'location' => ['test'],
+            'type' => 'test',
+            'type_house' => 0,
+            'area' => 0, //m2
+            'status' => true, // sold
+            'bought_by' => 0,
+            'price' => 0,
+            'images' => ['test'],
+            'description' => 'test',
+            'num_bathrooms' => 0,
+            'num_rooms' => 0,
+            'pets' => true,
+            'equipment' => 0, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished
+            'garden' => true, // type:bool
+            'swimming_pool' => true, // type: bool
+            'lift' => true,
+            'condition' => 0,
+            'air_condition' => true, // type: bool
+            'terrace' => true,
+            'contact' => 'test@test.test', //id of the user in charge of the property
+            'title' => 'test',
+            'building_use' => 0,
+        ]);
+        $id = $response->getData()->data->{'_id'};
+        $response->assertStatus(200);
+        return $id;
+    }
 
-        }
+    /**
+     * @depends test_post
+     */
+    public function test_put($id)
+    {
 
-        public function test_post()
-        {
-            $response = $this->withHeaders([
-                'Authorization' => 'Bearer '.env('CLIENT_TOKEN'),
-            ])->post('/api/properties',[
-                'location' => ['test'],
-                'type' => 'test',
-                'type_house' => 0,
-                'area' => 0, //m2
-                'status' => true, // sold
-                'bought_by' => 0,
-                'price' => 0,
-                'images' => ['test'],
-                'description' => 'test',
-                'num_bathrooms' => 0,
-                'num_rooms' => 0,
-                'pets' => true,
-                'equipment' => 0, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished
-                'garden' => true, // type:bool
-                'swimming_pool' => true, // type: bool
-                'lift' => true,
-                'condition' => 0,
-                'air_condition' => true, // type: bool
-                'terrace' => true,
-                'contact' => 'test@test.test', //id of the user in charge of the property
-                'title' => 'test',
-                'building_use' => 0,
-            ]);
-            $this->id = "prueba";//$response->getData()->data->{'_id'};
-            var_dump($this->id);
-            $response->assertStatus(200);
-
-        }
-
-        public function test_put()
-        {
-            var_dump($this->id);
-            $response = $this->withHeaders([
-                'Authorization' => 'Bearer '.env('CLIENT_TOKEN'),
-            ])->put('/api/properties/'.$this->id,
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . env('CLIENT_TOKEN'),
+        ])->put(
+            '/api/properties/' . $id,
             [
                 'location' => ['test2'],
                 'type' => 'test2',
@@ -90,9 +90,6 @@ class PropertyControllerTest extends TestCase
                 'building_use' => 1,
             ]
         );
-            $response->assertStatus(200);
-
-        }
-
-
+        $response->assertStatus(200);
+    }
 }
