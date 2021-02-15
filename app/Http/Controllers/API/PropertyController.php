@@ -28,7 +28,7 @@ class PropertyController extends Controller
     public function index()
     {
         //
-        $data = new Mongo;
+        //$data = new Mongo;
         //$conn = $data->{'acme'}->properties;
         //return $conn->find()->toArray();
         //return $this->properties->find()->toArray();
@@ -60,7 +60,7 @@ class PropertyController extends Controller
 
         $currentDateTime = Carbon::now()->toDateTimeString();
 
-        Property::insertOne(
+        $insert = Property::insertOne(
             [
                 'location' => $request->location,
                 'type' => $request->type,
@@ -76,7 +76,7 @@ class PropertyController extends Controller
                 'num_bathrooms' => $request->num_bathrooms,
                 'num_rooms' => $request->num_rooms,
                 'pets' => $request->pets,
-                'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished  
+                'equipment' => $request->equipment, //  type: int 0-> Indifferent , 1-> fully fitted kitchen, 2-> furnished
                 'garden' => $request->garden, // type:bool
                 'swimming_pool' => $request->swimming_pool, // type: bool
                 'lift' => $request->lift,
@@ -88,8 +88,8 @@ class PropertyController extends Controller
                 'building_use' => $request->building_use,
             ]
         );
-
-        return parent::sendResponse('stored');
+        $id = $insert->getInsertedId();
+        return parent::sendResponse($request->validated() + ['_id' => $id]);
     }
 
     /**

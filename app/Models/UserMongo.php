@@ -6,5 +6,6 @@ use App\Models\MongoModel;
 
 class UserMongo extends MongoModel
 {
-    public static $collection = 'users'; 
+    public static $collection = 'users';
 }
+
